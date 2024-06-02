@@ -2,14 +2,6 @@ MODEL:
   ANCESTRY:  'deit_tiny_patch16_224' # 'deit_tiny_attn2_ffn9'
   TYPE: deit
   NAME: deit_learngene_tiny
-  # DROP_PATH_RATE: 0.3
-  # SWIN:
-  #   EMBED_DIM: 96
-  #   DEPTHS: [ 2, 2, 18, 2 ]
-  #   NUM_HEADS: [ 3, 6, 12, 24 ]
-  #   NUM_HEADS_LEARNGENE: [ 3, 6, 6, 12 ]
-  #   NUM_HEADS_DESCENDANT: [ 3, 6, 12, 24 ]
-  #   WINDOW_SIZE: 7
   DEIT:
     EMBED_DIM: 192
     DEPTHS: 6
@@ -20,9 +12,7 @@ MODEL:
     # HDP (str): whether to use HDP / which type to use, default='' meaning not using
     HDP: 'qkv' # '' 
     # HDP_RATIOS (list of int/float): how much to scale down hdp head count | only edit the first number
-    HDP_RATIOS: [1.5, 1]  # 设置两层linear，分别是Linear(num_heads_descendant/HDP_RATIOS[0], num_heads_descendant/HDP_RATIOS[1])和Linear(num_heads_descendant/HDP_RATIOS[1], num_heads_descendant)
-    # STAGES (list of int): the stages to apply hdp to
-    # STAGES: [2, 3]
+    HDP_RATIOS: [1.5, 1]  # To set up two linear layers, Linear(num_heads_descendant/HDP_RATIOS[0], num_heads_descendant/HDP_RATIOS[1]) and Linear(num_heads_descendant/HDP_RATIOS[1], num_heads_descendant)
     # NON_LINEAR (bool): whether to use ReLU and multi HDP layers 
     FFN_RATIOS: 2.0 # 1.3333
     DESCENDANT_FFN_RATIOS: 2.0 # 1.34
@@ -34,7 +24,7 @@ MODEL:
     
 DATA:
   # BATCH_SIZE (int): default=128
-  BATCH_SIZE: 100 #400
+  BATCH_SIZE: 1000
 TRAIN:
   # lr is for ebs=512, will scale linearly
   # default: warmup_lr (5e-7) -> base_lr (5e-4) -> min_lr (5e-6)
@@ -44,4 +34,4 @@ TRAIN:
   # WARMUP_EPOCHS (int): default=20d
   WARMUP_EPOCHS: 5
 
-TAG : '4gpu_lr=5e-4_warm=5_attn2to3_ffn6to12_initialize_100epochs' # '4gpu_lr=5e-4_warm=5_gaussianattn3_gaussianffn12'
+TAG : '4gpu_lr=5e-4_warm=5_attn2to3_ffn6to12_initialize_100epochs' 
