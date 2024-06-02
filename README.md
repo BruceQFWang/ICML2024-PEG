@@ -45,5 +45,5 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node
 ## Fine-tuning
 To Fine-tune for downstream datasets (e.g., ImageNet, CIFAR10, CIFAR100...), run:
 ```bash
-CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.launch --nproc_per_node 1 --master_port 12346  main.py  --cfg configs/deit_tiny_hard_gfish_half_qkv+mlp_gaussian_downstream.yaml --finetune ./output/deit_learngene_tiny/4gpu_lr=5e-4_warm=5_attn2to3_ffn6to12_initialize_100epochs/ckpt_best.pth
+CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.launch --nproc_per_node 2 --master_port 12346  main.py  --cfg configs/deit_tiny_hard_gfish_half_qkv+mlp_gaussian_downstream.yaml --finetune ./output/deit_learngene_tiny/4gpu_lr=5e-4_warm=5_attn2to3_ffn6to12_initialize_100epochs/ckpt_best.pth
 ```
