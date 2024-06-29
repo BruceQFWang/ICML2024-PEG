@@ -1,6 +1,4 @@
-# Image Classification - ImageNet
-
-In this task, the model learns to predict the class of an image, out of 1000 classes.
+# Vision Transformers as Probabilistic Expansion from Learngene
 
 ## Requirements
 
